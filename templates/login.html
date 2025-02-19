@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What should we do next ?</title>
+    <style>
+        :root {
+            --gentle-green: #8df8b6;
+            --dark-green: #3f7253;
+            --gentle-beige: #f3e9f3;
+            --gentle-purple: #d166d1;
+            --dark-purple: #5f2f5f;
+            --main-font: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            font-family: var(--main-font);
+        }
+
+        #sign-window {
+            margin: auto;
+            border: 1px black solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+            width: fit-content;
+            height: fit-content;
+        }
+
+        #sign-window > * {
+            padding: 1rem 1rem 0;
+        }
+        #sign-window #sign-up {
+            padding: 1rem;
+        }
+
+        #sign-window #header {
+            text-align: center;
+            border-bottom: 1px black solid;
+            background-color: var(--gentle-green);
+        }
+        #sign-window #header h1 {
+            margin: 0;
+        }
+        #sign-window label, #sign-window input {
+            display: block;
+        }
+        #sign-window input[type="submit"] {
+            margin: 1rem auto 0;
+        }
+
+        #message {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+
+            padding: 1rem;
+            background-color: var(--dark-green);
+            color: var(--gentle-beige);
+            border: black 1px solid;
+            border-radius: 4px;
+        }
+
+        #error {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+
+            padding: 1rem;
+            background-color: var(--dark-purple);
+            color: var(--gentle-beige);
+            border: black 1px solid;
+            border-radius: 4px;
+        }
+
+        a, a:active, a:visited {
+            color: var(--dark-green);
+        }
+        a:hover {
+            color: var(--gentle-green);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="sign-window">
+        <div id="header">
+            <h1>Login</h1>
+        </div>
+        <form action="/give-access" id="login-form"> <!-- /!\ -->
+            <label for="username">Username: </label>
+            <input type="text" name="un" id="username" required>
+            <label for="password">Password: </label>
+            <input type="password" name="p" id="password" required>
+            <input type="submit" value="login">
+        </form>
+        <div id="sign-up">
+            First time here ? <a href="/register">register</a> ?
+        </div>
+        
+    </div> 
+    <!-- CONFIRM THAT REGISTRATION IS DONE -->
+    {% if message != "" %}
+    <div id="message">
+        {{message}}
+    </div>
+    {% endif %}
+
+    {% if error %}
+        <div id="error"> 
+            {{error}} 
+        </div>
+    {% endif %}
+    <script></script>
+</body>
+</html>

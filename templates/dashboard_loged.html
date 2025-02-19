@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESOUDRE LE PBLM -->
+    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+    <title>What should we do next ?</title>
+
+    <style>
+        :root {
+            --gentle-green: #8df8b6;
+            --dark-green: #3f7253;
+            --gentle-beige: #f3e9f3;
+            --gentle-purple: #d166d1;
+            --dark-purple: #5f2f5f;
+            --main-font: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            font-family: var(--main-font);
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: "header";
+            background-color: var(--gentle-beige);
+
+            margin: 0 4%;
+        }
+
+        .window {
+            /* height: 100%;
+            width: 100%; */
+            padding: 0.2rem;
+            margin: 1rem;
+        }
+
+        button {
+            border: 1px black solid;
+            color: var(--dark-green);
+            border-radius: 2px;
+            background-color: var(--gentle-beige);
+            text-align: center;
+            cursor: pointer;
+            transition: ease-in 100ms;
+        }
+        button:hover {
+            transform: scale(102%);
+        }
+        button:active {
+            transform: scale(97%);
+        }
+        button:disabled {
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        #header {
+            grid-area: header;
+            text-align: center;
+        }
+
+        #window-select-todo {
+            min-width: 80%;
+            max-width: 80%;
+            min-height: 80vh;
+            max-height: 80vh;
+            overflow-y: scroll;
+
+            margin: auto;
+            padding: 1rem;
+
+            background-color: var(--gentle-green);
+            border: 1px black solid;
+            border-radius: 4px;
+        }
+        #window-select-todo h1 {
+            text-align: center;
+        }
+
+        #header-todo-dash {
+            display: flex;
+            justify-content: space-between;
+        }
+        #header-todo-dash > * {
+            margin: 0;
+        }
+
+        .period {
+            text-decoration: solid black 1px underline;
+        }
+
+        dialog {
+            border: 1px black solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+        }
+
+        label {
+            display: block;
+            padding: 1.2rem;
+        }
+
+        fieldset {
+            margin: 1rem;
+            text-align: left;
+        }
+
+        button, input[type="submit"] {
+            border: 1px black solid;
+            border-radius: 2px;
+            background-color: var(--gentle-beige);
+            color: var(--dark-green);
+            font-family: var(--main-font);
+            text-align: center;
+            cursor: pointer;
+            transition: ease-in 100ms;
+        }
+        button:hover, input[type="submit"]:hover {
+            transform: scale(105%);
+        }
+        button:active, input[type="submit"]:active {
+            transform: scale(95%);
+        }
+        form {
+            text-align: center;
+        }
+        a, a:active, a:visited {
+            color: var(--dark-purple);
+        }
+        a:hover {
+            color: var(--gentle-purple);
+        }
+    </style>
+
+</head>
+<body>
+    <h1 id="header">What should we do next ?</h1>
+    <div id="window-select-todo">
+        <div id="header-todo-dash">
+            <h1>All your todo lists</h1>
+            <button onclick="document.getElementById('form-create-todo').showModal()">create a new todo list</button>
+        </div>
+
+        <dialog id="form-create-todo">
+            <form action="/create-todo/{{username}}">
+                <fieldset>
+                    <legend>Give us the essential informations to create your todo list !</legend>
+                    <label for="deadline">Fill the blank: what should I do <input type="text" id="deadline" name="deadline" placeholder="next" required> ?</label>
+                    <label for="goal">What is your goal ? <input type="text" id="goal" name="goal" minlength="4" maxlength="32" required></label>
+                    <label for="title">How should we name your dashboard ? <input type="text" id="title" name="title" placeholder="New year new plans !" required></label>
+                </fieldset>
+                <input type="submit" value="create my todo list !">
+            </form>
+        </dialog>
+        
+        {% for id, element in todo.items() %}
+            <div class="todo-info">
+                <h2> <a href="/dashboard/{{username}}?id={{id}}">{{ element["title"] }}</a> </h1>
+                <p>Make it <span class="period">{{ element["deadline"] }}</span></p>
+                <!-- <button>⭐ Stick to it</button> -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>What should we do next ?</title>
+</head>
+<body>
+    <form action="http://127.0.0.1:5000/create-todo">
+        <fieldset>
+            <legend>Add your tasks here (you can still change it later)</legend>
+            <div id="task-list"></div>
+            <button>+</button>
+        </fieldset>
+        <input type="submit" value="submit !">
+    </form>
+    
+    <dialog id="add-task-dialog">
+        <form>
+            <fieldset>
+                <legend>Put all the informations about your task</legend>
+                <label for="title-task" name="title-task">Title: <input type="text" id="title-task" placeholder="My task"></label>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description"></textarea>
+                <button>Create task</button>
+            </fieldset>
+        </form>
+    </dialog>
+</body>
+</html>

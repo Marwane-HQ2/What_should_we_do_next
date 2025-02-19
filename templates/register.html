@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What should we do next ?</title>
+    <style>
+        :root {
+            --gentle-green: #8df8b6;
+            --dark-green: #3f7253;
+            --gentle-beige: #f3e9f3;
+            --gentle-purple: #d166d1;
+            --dark-purple: #5f2f5f;
+            --main-font: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            font-family: var(--main-font);
+        }
+
+        #sign-window {
+            margin: auto;
+            border: 1px black solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+            width: fit-content;
+            min-width: 28rem;
+            height: fit-content;
+        }
+
+        #sign-window > * {
+            padding: 1rem 1rem 0;
+        }
+
+        #sign-window #header {
+            text-align: center;
+            border-bottom: 1px black solid;
+            background-color: var(--gentle-green);
+        }
+        #sign-window #header h1 {
+            margin: 0;
+        }
+        #sign-window label, #sign-window input {
+            display: block;
+        }
+        input {
+            width:  95%;
+        }
+        #sign-window input[type="submit"] {
+            margin: 1rem auto;
+            width: fit-content;
+        }
+        #sign-window input[type="submit"]:disabled {
+            cursor: not-allowed;
+        }
+
+        #indications {
+            text-align: center;
+            color: red;
+        }
+        ul {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="sign-window">
+        <div id="header">
+            <h1>Register</h1>
+        </div>
+        <form action="/new-user" id="register-form" method="get post"> <!-- /!\ -->
+            <label for="username">Username: </label>
+            <input type="text" name="un" id="username" required>
+
+            <label for="password">Password: </label>
+            <input type="password" name="p" id="password" required>
+
+            <label for="confirm-password">Confirm password: </label>
+            <input type="password" id="confirm-password" required>
+
+            <p id="indications">Enter a valid username</p>
+            <ul>
+                <li>At least 8 characters</li>
+                <li>At least one uppercase</li>
+                <li>At least one number</li>
+                <li>No spaces</li>
+            </ul>
+            
+            <input type="submit" value="register" id="submit-register" disabled>
+            
+            <script>
+                const usernameInput = document.getElementById("username")
+                const passwordInput = document.getElementById("password")
+                const confirmPasswordInput = document.getElementById("confirm-password")
+
+                const submitButton = document.getElementById("submit-register")
+
+                function submissionConditioinsFullfiled () {
+                    const criteria = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*\s).{8,}$/ // MIN, MAJ, CHIFFRE, PAS D'ESPACE ET 8 CAR
+                    console.log(criteria.test(passwordInput.value))
+                    return [((passwordInput.value === confirmPasswordInput.value) && (criteria.test(passwordInput.value)) && usernameInput.value.length > 5),
+                    usernameInput.value.length > 5 ? ((passwordInput.value === confirmPasswordInput.value) ? ((criteria.test(passwordInput.value)) ? "" : "Password doesn't meet all requirements") : "The two passwords must be the same") : "Enter a valid username"]
+                }
+
+                confirmPasswordInput.addEventListener("input", async () => {
+                    let meetRequirements = submissionConditioinsFullfiled()
+                    console.log(meetRequirements)
+                    submitButton.disabled = !meetRequirements[0] 
+                    document.getElementById("indications").innerHTML = meetRequirements[1]
+                })
+                passwordInput.addEventListener("input", async () => {
+                    let meetRequirements = submissionConditioinsFullfiled()
+                    console.log(meetRequirements)
+                    submitButton.disabled = !meetRequirements[0] 
+                    document.getElementById("indications").innerHTML = meetRequirements[1]
+                })
+                usernameInput.addEventListener("input", async () => {
+                    let meetRequirements = submissionConditioinsFullfiled()
+                    console.log(meetRequirements)
+                    submitButton.disabled = !meetRequirements[0] 
+                    document.getElementById("indications").innerHTML = meetRequirements[1]
+                })
+            </script>
+        </form>
+    </div>
+</body>
+</html>

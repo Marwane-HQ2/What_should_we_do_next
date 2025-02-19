@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESOUDRE LE PBLM -->
+    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+    <title>What should I do next ?</title>
+
+    <style>
+        :root {
+            --gentle-green: #8df8b6;
+            --dark-green: #3f7253;
+            --gentle-beige: #f3e9f3;
+            --gentle-purple: #d166d1;
+            --dark-purple: #5f2f5f;
+            --main-font: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            font-family: var(--main-font);
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: "header" 
+            "main";
+            background-color: var(--gentle-beige);
+
+            margin: 0 4%;
+        }
+
+        #task-app-content {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 30% 30% 40%;
+            grid-template-areas: "goal goal goal"
+            "tasks-dashboard mail all-tasks";
+            height: fit-content;
+        }
+
+        .window {
+            /* height: 100%;
+            width: 100%; */
+            padding: 0.2rem;
+            margin: 1rem;
+        }
+
+        div * {
+            
+        }
+
+        ul, ol, li {
+            margin: 0;
+        }
+
+        button {
+            border: 1px black solid;
+            border-radius: 2px;
+            background-color: var(--gentle-beige);
+            font-family: var(--main-font);
+            text-align: center;
+            cursor: pointer;
+            transition: ease-in 100ms;
+        }
+        button:hover {
+            transform: scale(102%);
+        }
+        button:active {
+            transform: scale(97%);
+        }
+        button:disabled {
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .label {
+            display: block;
+            margin: 1rem 0;
+        }
+
+        /*  */
+
+        .window {
+            background-color: var(--gentle-green);
+            border: black 2px solid;
+            border-radius: 8px;
+        }
+
+        #header {
+            grid-area: header;
+            text-align: center;
+        }
+
+        #tasks-dashboard {
+            grid-area: tasks-dashboard;
+        }
+
+        #goal {
+            grid-area: goal;
+            text-align: center;
+        }
+
+        #all-tasks-dashboard {
+            grid-area: all-tasks;
+            min-height: 40vh;
+            max-height: 60vh;
+        }
+
+        #mail-box {
+            grid-area: mail;
+            text-align: center;
+
+        }
+
+        /*  */
+
+        #todo-lists-car {
+            width: 100%;
+        }
+
+        #All_tasks {
+            /* width: 100%; */
+            text-align: center;            
+        }
+
+        .card-todo {
+            overflow-y: scroll;
+
+            min-width: 95%;
+            max-width: 95%;
+            min-height: 43vh;
+            max-height: 43vh;
+
+            border: black 1px solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+            margin: 1rem auto;
+        }
+        h1 {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        /*  */
+        ::-webkit-scrollbar {
+            width: 4px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--gentle-green);
+            width: 6px;
+            border-radius: 2px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--dark-green);
+            width: 6px;
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        ::selection {
+            background-color: var(--gentle-purple);
+            color: var(--dark-green);
+        }
+
+        #tasks-creation-menu {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        #list-all-tasks-check {
+            padding: 0 0 0 1rem;
+        }
+
+        input[type="checkbox"]{
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background-color: var(--gentle-beige);
+            border: solid black 1px;
+            border-radius: 1px;
+            margin: 0;
+        }
+        input[type="checkbox"]:checked {
+            background-color: var(--gentle-green);
+        }
+
+        input[type="checkbox"]:checked + label {
+            text-decoration: solid black 1px line-through;
+        }
+
+        .comming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+            user-select: none;
+        }
+
+        #big-figure {
+            font-size: 4rem;
+            text-align: center;
+        }
+
+        #information {
+            max-width: 80%;
+            min-height: 6rem;
+            max-height: 6rem;
+            overflow-y: scroll;
+            text-align: center;
+            background-color: var(--gentle-beige);
+            border: black 1px solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+            padding: 1rem;
+            margin: 1rem auto;
+        }
+
+        #information h1 {
+            margin: 0;
+        }
+
+        .complete {
+            text-align: center;
+            margin: auto;
+            background-color: var(--gentle-green);
+            color: var(--dark-green);
+            border: var(--dark-green) 1px solid;
+            padding: 0.4rem;
+            width: fit-content;
+            border-radius: 4px;
+        }
+        .pending {
+            text-align: center;
+            margin: auto;
+            background-color: var(--gentle-purple);
+            color: var(--dark-purple);
+            border: var(--dark-purple) 1px solid;
+            padding: 0.4rem;
+            width: fit-content;
+            border-radius: 4px;
+        }
+
+        dialog {
+            border: 1px black solid;
+            border-radius: 4px;
+            background-color: var(--gentle-beige);
+        }
+        dialog label {
+            display: block;
+            padding: 1.2rem;
+        }
+
+        dialog fieldset {
+            margin: 1rem;
+            text-align: left;
+        }
+
+        dialog button, dialog input[type="submit"] {
+            border: 1px black solid;
+            border-radius: 2px;
+            background-color: var(--gentle-beige);
+            color: var(--dark-green);
+            font-family: var(--main-font);
+            text-align: center;
+            cursor: pointer;
+            transition: ease-in 100ms;
+        }
+        dialog button:hover, dialog input[type="submit"]:hover {
+            transform: scale(105%);
+        }
+        dialog button:active, dialog input[type="submit"]:active {
+            transform: scale(95%);
+        }
+        dialog form {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body data-todo_id={{id}} data-username={{username}}>
+    <h1 id="header">What should I do <span id="time-period"> {{data.deadline}} </span> ?</h1>
+    
+    <div id="task-app-content">
+    <div class="window" id="tasks-dashboard">
+        <div id="tasks-track">
+            <!-- GET THE TASKS
+                    ICI CODER L'AJOUT D'UNE LISTE AVEC LA DERNIÈRE TÂCHE EFFECTUEE ET 
+                    LA PROCHAINE TÂCHE À VENIR, ENSUITE UNE FLÈCHE VERS LA DERNIÈRE TACHE 
+                    AVANT L'OBJECTIF ET ENFIN L'OBJECTIF
+                    ON ACCÈDERA À CES TÂCHES DEPUIS L'API...
+             -->
+
+             <!-- -->
+            <h1>What have I done so far ?</h1>
+            <h1 id="big-figure"> {{(nb_completed/length_tasks*100)|round(0)}} % </h1>
+            <div id="information">
+                hover one of your tasks to get more informations
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div id="tasks-graph">
+            <!-- yeah whatever -->
+            <!-- <canvas></canvas> -->
+             <div id="graph"></div>
+        </div>
+    </div>
+        <div class="window" id="goal">
+            <!-- GET THE GOALS -->
+            <h1 id="the-actual-goal">Keeping eyes on the prize: {{data.goal}} </h1>
+            <!-- ET SI ON LE FAISAIT DEFILER ? GENRE BANDEROLLE LE BATEAU VA PARTIR ? -->
+        </div>
+
+        <div class="window" id="all-tasks-dashboard">
+            <!-- GET THE TASKS
+                    SCROLL BAR HIHIHI 
+            -->
+            <h1 id="All_tasks">All tasks</h1>
+            <div id="todo-lists-car">
+                   <div class="card-todo"> 
+                    <!-- OKKK -->
+                    <h1> {{ data.title }} </h1>
+                    <div id="list-all-tasks-check">
+                            <!-- len() DOESN'T EXIST IN JINJA, IT'S OKAY... -->
+                            {% for task_index in range(length_tasks) %} 
+                            <div class="label">
+                                <input type="checkbox" data-todo_id="{{data.todo_id}}"> <label>{{ data.tasks[task_index].title }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <script>
+                            
+                        </script>
+                        
+                        <div id="tasks-creation-menu">
+                            <button onclick="document.getElementById('create-task-dialog-form').showModal()">add a new task</button>
+                            <dialog id="create-task-dialog-form">
+                                <form action="/create-task/{{username}}/{{id}}">
+                                    <fieldset>
+                                        <legend>Task infos</legend>
+                                        <label for="title">Task title : <input type="text" name="title" id="title"></label>
+                                        <label for="description">Description : <input type="text" name="description" id="description"></label>
+                                    </fieldset>
+                                    <input type="submit" value="create">
+                                </form>
+                            </dialog>
+                        </div>
+                   </div>
+                </div>
+        </div>
+
+        <div class="window comming-soon" title="Coming soon !" id="mail-box">
+            <!-- THE MAIL BOX !!! -->
+            <p>You have no new mail...</p>
+            <img src="" alt="">
+            <button disabled>send a letter to the future me</button>
+        </div>
+    
+        <script>
+            // CHECK BOXES ACCORDING TO JSON FILE
+            let tasksCheckBoxes = document.querySelectorAll(".label input")
+            let todoId = document.body.dataset.todo_id
+            let username = document.body.dataset.username
+            let elementDatas
+
+            async function getDataFromCheckbox (USERNAME, ID) {
+                let DATA = await fetch(`/get-tasks/${USERNAME}/${ID}`)
+                DATA = await DATA.json()
+                return DATA
+            }
+            async function configCheckBoxInputs() {
+                elementDatas = await getDataFromCheckbox(username, todoId)
+
+                for (let index=0; index<tasksCheckBoxes.length; index++) {
+                    let element = tasksCheckBoxes[index]
+                    element.checked = {"true": true, "false":false}[elementDatas[index].completed]
+
+                    element.addEventListener("input", async () => {
+                        await fetch(`/update-task/${username}/${todoId}/${index}/${element.checked}`)
+                    })
+                    element.addEventListener("mouseover", () => {
+                        document.getElementById("information").innerHTML = `
+                        <h1>${elementDatas[index].title}</h1>
+                        <p>${elementDatas[index].description} </p>
+                        <div class="${elementDatas[index].completed ? "complete" : "pending"}">${elementDatas[index].completed ? "COMPLETED" : "PENDING"}</div>
+                        `
+                    })
+                }
+            }
+            configCheckBoxInputs()
+        </script>
+</div>
+</body>
+</html>
