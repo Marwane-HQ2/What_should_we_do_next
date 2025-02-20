@@ -1,47 +1,75 @@
 {
-    "1739456881562403": {
-        "todo_id": "1739456881562403",
-        "title": null,
-        "deadline": null,
-        "tasks": [],
-        "goal": null,
-        "registered": true,
-        "completed": false
+    "me": {
+        "password": "e39587cf5545fcb6d5c728c15197f4fcf4b2fe4c1c27f22235f3980930cb7b0324cd6d8fdcd961b6c9f2a43fe47ad2e1f77f87b3a43309a2599ce167f9b8cdcb",
+        "todos": {
+            "1739615832027749": {
+                "todo_id": "1739615832027749",
+                "title": "Need to fill bank account",
+                "deadline": "this year",
+                "tasks": [
+                    {
+                        "title": "Eat and leave no crumbs everyday",
+                        "description": "Need to eat that",
+                        "completed": true,
+                        "index": 0
+                    },
+                    {
+                        "title": "Stand for myself",
+                        "description": "Basic",
+                        "completed": true,
+                        "index": 1
+                    },
+                    {
+                        "title": "Remember to drink water",
+                        "description": "Hydratation",
+                        "completed": false,
+                        "index": 2
+                    },
+                    {
+                        "title": "Reach my goal",
+                        "description": "The final boss",
+                        "completed": false,
+                        "index": 3
+                    }
+                ],
+                "goal": "Become rich",
+                "registered": true
+            }
+        }
     },
-    "1739457064673378": {
-        "todo_id": "1739457064673378",
-        "title": "[object HTMLInputElement]",
-        "deadline": "[object HTMLInputElement]",
-        "tasks": [],
-        "goal": "[object HTMLInputElement]",
-        "registered": true,
-        "completed": false
-    },
-    "1739457114298263": {
-        "todo_id": "1739457114298263",
-        "title": "\u00e0\u00e7_\u00e0\u00e7_\u00e0\u00e7_",
-        "deadline": "lkdjlkqjf",
-        "tasks": [],
-        "goal": "hoidoezh",
-        "registered": true,
-        "completed": false
-    },
-    "1739457141394578": {
-        "todo_id": "1739457141394578",
-        "title": "\u00e0\u00e7_\u00e0\u00e7_",
-        "deadline": "theis week",
-        "tasks": [],
-        "goal": "\u00e7\u00e0 \u00e0\u00e7_\u00e8\u00e0\u00e7",
-        "registered": true,
-        "completed": false
-    },
-    "1739610320526581": {
-        "todo_id": "1739610320526581",
-        "title": "oaoaapoap",
-        "deadline": "theis week",
-        "tasks": [],
-        "goal": "huiuyiu",
-        "registered": true,
-        "completed": false
+    "scooby": {
+        "password": "e39587cf5545fcb6d5c728c15197f4fcf4b2fe4c1c27f22235f3980930cb7b0324cd6d8fdcd961b6c9f2a43fe47ad2e1f77f87b3a43309a2599ce167f9b8cdcb",
+        "todos": {
+            "1739981150510861": {
+                "todo_id": "1739981150510861",
+                "title": "Go byelingual",
+                "deadline": "this weekend",
+                "tasks": [
+                    {
+                        "title": "Reach my goal",
+                        "description": "The final boss",
+                        "completed": false,
+                        "index": 0
+                    }
+                ],
+                "goal": "Learn english",
+                "registered": true
+            },
+            "1739981209533046": {
+                "todo_id": "1739981209533046",
+                "title": "Idk either",
+                "deadline": "tomorrow",
+                "tasks": [
+                    {
+                        "title": "Reach my goal",
+                        "description": "The final boss",
+                        "completed": false,
+                        "index": 0
+                    }
+                ],
+                "goal": "I really don't know",
+                "registered": true
+            }
+        }
     }
 }
