@@ -189,4 +189,5 @@ def create_task(username, todo_id):
     save_to_file()
     return redirect(f"/dashboard/{username}?id={todo_id}"), 301
 
-app.run()
+if __name__ == "__main__":
+    app.run()
